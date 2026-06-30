@@ -52,6 +52,11 @@
         /* 🚀 2. คลาสสำหรับปุ่มแม่เหล็ก */
         .btn-magnetic { transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: inline-block; }
         a, button, input, textarea { cursor: none !important; }
+
+        /* 🚀 3. ทำให้ Dropdown กางออกเมื่อเอาเมาส์ชี้ (Hover) */
+        .dropdown-menu { display: none; margin-top: 0; }
+        .dropdown:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
     {% block extra_css %}{% endblock %}
 </head>
@@ -70,7 +75,6 @@
         <div class="bubble" style="left: 90%; width: 70px; height: 70px; animation-delay: 7s; animation-duration: 14s;"></div>
     </div>
 
-    <!-- NAVIGATION BAR -->
     <nav class="navbar navbar-expand-lg navbar-minimal sticky-top py-3">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand d-flex align-items-center cursor-hover" href="/">
@@ -85,8 +89,20 @@
                     <li class="nav-item"><a class="nav-link cursor-hover {% block active_home %}{% endblock %}" href="/">หน้าแรก</a></li>
                     <li class="nav-item"><a class="nav-link cursor-hover {% block active_about %}{% endblock %}" href="/about/">เกี่ยวกับฉัน</a></li>
                     <li class="nav-item"><a class="nav-link cursor-hover {% block active_contact %}{% endblock %}" href="/contact/">ติดต่อฉัน</a></li>
-                    <li class="nav-item"><a class="nav-link cursor-hover" href="/#projects">ผลงานของผม</a></li>
-                </ul>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle cursor-hover" href="/#projects" id="navbarDropdown" aria-expanded="false">
+                            ผลงานของผม
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow-sm rounded-3" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item cursor-hover py-2" href="/#projects">ดูผลงานทั้งหมด</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item cursor-hover py-2" href="/#projects"><i class="bi bi-cpu me-2 text-primary"></i>งานด้าน IoT</a></li>
+                            <li><a class="dropdown-item cursor-hover py-2" href="/about/"><i class="bi bi-globe me-2 text-success"></i>งาน Web Application</a></li>
+                            <li><a class="dropdown-item cursor-hover py-2" href="/about/"><i class="bi bi-diagram-3 me-2 text-warning"></i>ทักษะด้าน Programming</a></li>      
+                        </ul>
+                    </li>
+                    </ul>
                 <div class="d-flex align-items-center ms-lg-4 ps-lg-4 border-start border-light-subtle">
                     <span class="small text-secondary fw-medium"><i class="bi bi-dot text-success fs-4 align-middle"></i>คุณภูเบศร์</span>
                 </div>
@@ -94,13 +110,11 @@
         </div>
     </nav>
 
-    <!-- MAIN CONTENT -->
     <main class="flex-grow-1">
         {% block content %}
         {% endblock %}
     </main>
 
-    <!-- FOOTER -->
     <footer class="py-5 bg-white border-top border-light-subtle mt-5" data-aos="fade-up">
         <div class="container px-4 px-lg-5 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
             <div>
@@ -114,7 +128,6 @@
         </div>
     </footer>
 
-    <!-- Bootstrap & Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script> 
