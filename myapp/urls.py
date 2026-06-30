@@ -1,0 +1,8 @@
+from django.urls import path
+from myapp import views 
+
+urlpatterns = [
+    path('', views.index, name='index'), # ผูกเข้ากับฟังก์ชัน index ใน views.py
+    path('about/', views.about, name='about'), # ผูกเข้ากับฟังก์ชัน about ใน views.py
+    path('contact/', views.contact, name='contact'), # ผูกเข้ากับฟังก์ชัน contact ใน views.py
+]

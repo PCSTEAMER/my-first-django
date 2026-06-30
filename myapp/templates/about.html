@@ -1,0 +1,92 @@
+{% extends 'basetemplate.html' %}
+{% load static %}
+
+{% block title %}เกี่ยวกับฉัน - Profile & Skills{% endblock %}
+{% block active_about %}active{% endblock %}
+
+{% block extra_css %}
+<style>
+    .text-balance { text-wrap: balance; }
+    .skill-box {
+        border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem; background: #f8fafc; transition: all 0.2s ease; cursor: none;
+    }
+    .skill-box:hover { border-color: #cbd5e1; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container px-4 px-lg-5 my-5 py-4">
+    <div class="row g-4 justify-content-center">
+        
+        <!-- ฝั่งซ้าย: ประวัติส่วนตัว -->
+        <div class="col-lg-7" data-aos="fade-right">
+            <div class="card-minimal p-4 p-md-5 h-100 cursor-hover">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="bg-dark text-white font-monospace px-2 py-1 rounded-1" style="font-size: 0.75rem;">PROFILE</span>
+                    <span class="text-muted small font-monospace">ABOUT ME</span>
+                </div>
+                
+                <h2 class="fw-bold tracking-tight text-dark mb-3">นายภูเบศร์ โลมะบุตร</h2>
+                <p class="fs-5 text-secondary mb-4">ชื่อเล่น: ไอซ์ (อายุ 20 ปี)</p>
+                <p class="text-muted text-balance mb-4">
+                    ปัจจุบันเป็นนักศึกษาสาขาวิทยาการคอมพิวเตอร์ คณะวิทยาศาสตร์และเทคโนโลยี มหาวิทยาลัยราชภัฏกำแพงเพชร 
+                    มีความเชี่ยวชาญและสนใจเป็นพิเศษในระบบฝังตัว (Embedded Systems), เทคโนโลยี IoT, การบริหารจัดการระบบเครือข่าย และวิทยาการข้อมูล
+                </p>
+
+                <hr class="my-4 opacity-50">
+
+                <div class="p-4 bg-light rounded-4 border border-light-subtle" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <i class="bi bi-award-fill text-dark fs-5"></i>
+                        <h5 class="fw-bold text-dark mb-0">โปรเจกต์วิจัยและพัฒนาในปัจจุบัน</h5>
+                    </div>
+                    <p class="text-secondary small mb-0 lh-lg">
+                        กำลังพัฒนาเว็บแอปพลิเคชันเพื่อใช้สำหรับ **คัดแยกสายพันธุ์มันสำปะหลังในเชิงการค้า** 
+                        ภายใต้ความร่วมมือและพัฒนาร่วมกับ **บริษัท อายิโน๊ะโมโต๊ะ** เพื่อยกระดับและขับเคลื่อนนวัตกรรมภาคอุตสาหกรรม
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ฝั่งขวา: สกิล มินิมอลแยกกล่อง ใส่ 3D -->
+        <div class="col-lg-5" data-aos="fade-left" data-aos-delay="100">
+            <div class="card-minimal p-4 p-md-5 h-100">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h4 class="fw-bold tracking-tight text-dark mb-0"><i class="bi bi-sliders me-2"></i> Skills Matrix</h4>
+                    <span class="text-muted small font-monospace">CAPABILITIES</span>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-12" data-aos="fade-up" data-aos-delay="300">
+                        <!-- 🚀 ใส่ 3D Tilt ให้กล่องสกิลขยับได้ -->
+                        <div class="skill-box" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.1">
+                            <h6 class="fw-bold text-dark mb-2">Programming Languages</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-dark fw-normal px-2 py-1">Python</span>
+                                <span class="badge bg-dark fw-normal px-2 py-1">Java</span>
+                                <span class="badge bg-dark fw-normal px-2 py-1">PHP</span>
+                                <span class="badge bg-dark fw-normal px-2 py-1">C++</span>
+                                <span class="badge bg-dark fw-normal px-2 py-1">HTML</span>
+                                <span class="badge bg-dark fw-normal px-2 py-1">Dart</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" data-aos="fade-up" data-aos-delay="400">
+                        <div class="skill-box" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.1">
+                            <h6 class="fw-bold text-dark mb-2">Operating Systems</h6>
+                            <span class="badge bg-secondary bg-opacity-10 text-dark fw-medium px-2 py-1 border border-secondary border-opacity-10"><i class="bi bi-terminal me-1"></i>Linux Enterprise</span>
+                        </div>
+                    </div>
+                    <div class="col-12" data-aos="fade-up" data-aos-delay="500">
+                        <div class="skill-box" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.1">
+                            <h6 class="fw-bold text-dark mb-2">Life Skills</h6>
+                            <span class="badge bg-secondary bg-opacity-10 text-dark fw-medium px-2 py-1 border border-secondary border-opacity-10"><i class="bi bi-egg-fried me-1"></i>ศาสตร์การประกอบอาหาร</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

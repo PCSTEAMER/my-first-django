@@ -1,0 +1,124 @@
+{% extends 'basetemplate.html' %}
+{% load static %}
+
+{% block title %}หน้าแรก - Selected Works{% endblock %}
+{% block active_home %}active{% endblock %}
+
+{% block content %}
+<!-- 🏛️ Hero Section -->
+<div class="container px-4 px-lg-5 my-5">
+    <!-- ใช้ data-aos เลื่อนขึ้นเบาๆ -->
+    <div class="card-minimal p-4 p-md-5" data-aos="fade-up">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7 text-start">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="bg-dark text-white font-monospace px-2 py-1 rounded-1" style="font-size: 0.75rem;">INDEX</span>
+                    <span class="text-muted small font-monospace">UPDATED 2026</span>
+                </div>
+                <!-- 🚀 ตรงนี้ใส่ลูกเล่น Typed.js ให้ข้อความพิมพ์เองได้ -->
+                <h1 class="display-4 fw-bold tracking-tight text-dark mb-3">
+                    ผมคือ <span id="typed-text" class="text-primary"></span>
+                </h1>
+                <p class="fs-5 text-secondary font-light mb-4 text-balance col-xxl-11">บันทึกการวิจัยและผลงานสร้างสรรค์ทางเทคโนโลยี ด้านวิทยาการคอมพิวเตอร์ ระบบเครือข่ายความปลอดภัย และระบบฝังตัวอัจฉริยะ (IoT)</p>
+                <div class="d-flex gap-3">
+                    <a href="/about/" class="btn btn-dark px-4 py-2 rounded-3 fw-medium text-white shadow-sm hover-card">อ่านประวัติ</a>
+                    <a href="/contact/" class="btn bg-white border text-dark px-4 py-2 rounded-3 fw-medium hover-card">ติดต่อร่วมงาน</a>
+                </div>
+            </div>
+            <!-- รูปภาพก็ใส่ลูกเล่น 3D Tilt เอียงตามเมาส์ได้ -->
+            <div class="col-lg-5 text-center">
+                <div class="d-inline-block p-2 bg-light border border-light-subtle rounded-4" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+                    <img src="{% static 'images/meme.jpg' %}" 
+                         class="img-fluid rounded-3 shadow-sm" 
+                         style="max-height: 320px; width: 100%; object-fit: cover; cursor: pointer;" 
+                         alt="My Photo"
+                         data-bs-toggle="tooltip" 
+                         data-bs-placement="bottom" 
+                         data-bs-title="ไม่เชื่อโม้้้">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container px-4 px-lg-5 my-5">
+    <!-- 📊 Stats Section -->
+    <div class="card-minimal border-0 p-4 mb-5" data-aos="fade-up" data-aos-delay="200">
+        <div class="row g-4 text-center text-md-start">
+            <div class="col-md-4 py-2 py-md-0 border-end border-light-subtle">
+                <span class="text-muted font-monospace small text-uppercase">IoT Engineering</span>
+                <h4 class="fw-bold text-dark mt-1 mb-0">3 บิ๊กซิสเต็มส์</h4>
+            </div>
+            <div class="col-md-4 py-2 py-md-0 ps-md-4 border-end border-light-subtle">
+                <span class="text-muted font-monospace small text-uppercase">Commercial Project</span>
+                <h4 class="fw-bold text-dark mt-1 mb-0">1 ผลงานระดับชาติ</h4>
+            </div>
+            <div class="col-md-4 py-2 py-md-0 ps-md-4">
+                <span class="text-muted font-monospace small text-uppercase">Research Fields</span>
+                <h4 class="fw-bold text-dark mt-1 mb-0">4 แกนความสนใจ</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🛠️ Project Grid Layout -->
+    <div class="row g-4" id="projects">
+        <div class="col-12 mb-2 d-flex justify-content-between align-items-end" data-aos="fade-up">
+            <h4 class="fw-bold tracking-tight text-dark mb-0"><i class="bi bi-grid me-2"></i> Selected Works</h4>
+            <span class="text-muted small font-monospace">CORE PROJECT / ARCHIVE</span>
+        </div>
+        
+        <!-- Card 1 : ใส่ data-tilt เพื่อให้เป็น 3D -->
+        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="card card-minimal h-100 p-4" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <span class="text-muted font-monospace small">#01 / APPLICATION</span>
+                    <span class="badge bg-dark rounded-1 font-monospace fw-normal text-white px-2 py-1" style="font-size: 0.75rem;">ESP8266</span>
+                </div>
+                <h5 class="fw-bold text-dark mb-2">ระบบพยากรณ์อากาศดึง API</h5>
+                <p class="text-secondary small mb-0">โครงสร้างการสื่อสารข้อมูลผ่านโปรโตคอลเพื่อดึงข้อมูลจากสภาพอากาศภายนอกด้วย API สู่หน้าบอร์ดประมวลผลความเร็วสูงแบบ Real-time</p>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="card card-minimal h-100 p-4" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <span class="text-muted font-monospace small">#02 / INFRASTRUCTURE</span>
+                    <span class="badge bg-dark rounded-1 font-monospace fw-normal text-white px-2 py-1" style="font-size: 0.75rem;">ESP32</span>
+                </div>
+                <h5 class="fw-bold text-dark mb-2">ระบบเปิดคอมพิวเตอร์ผ่านสาย LAN</h5>
+                <p class="text-secondary small mb-0">การนำสัญญานเครือข่ายภายในแบบ Wake-on-LAN ประยุกต์ผูกเข้ากับชิปควบคุมคำสั่งระยะไกล เพื่อสั่งการฮาร์ดแวร์ปลายทางอย่างปลอดภัย</p>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="card card-minimal h-100 p-4" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <span class="text-muted font-monospace small">#03 / AUTOMATION</span>
+                    <span class="badge bg-dark rounded-1 font-monospace fw-normal text-white px-2 py-1" style="font-size: 0.75rem;">ESP32</span>
+                </div>
+                <h5 class="fw-bold text-dark mb-2">ระบบควบคุมไฟอัตโนมัติผ่านเว็บ</h5>
+                <p class="text-secondary small mb-0">ระบบเว็บเซอร์เวอร์แบบสแตนด์อโลนบนตัวชิปไอโอที พัฒนาหน้าอินเทอร์เฟซผู้ใช้แบบความหน่วงต่ำ เพื่อจัดการระบบพลังงานแสงสว่าง</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // สคริปต์ Tooltip เดิม
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+    // 🚀 สคริปต์สั่งให้ข้อความพิมพ์เอง (Typing Effect)
+    var typed = new Typed('#typed-text', {
+        strings: ["นักพัฒนา IoT.", "Web Developer.", "ผู้เชี่ยวชาญ Network."],
+        typeSpeed: 60,
+        backSpeed: 40,
+        loop: true,
+        backDelay: 1500
+    });
+</script>
+{% endblock %}

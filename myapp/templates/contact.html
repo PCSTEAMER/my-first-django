@@ -1,0 +1,101 @@
+{% extends 'basetemplate.html' %}
+{% load static %}
+
+{% block title %}ติดต่อฉัน - Get In Touch{% endblock %}
+{% block active_contact %}active{% endblock %}
+
+{% block extra_css %}
+<style>
+    .form-minimal .form-control {
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        border-radius: 0;
+        padding: 0.75rem 0;
+        background: transparent;
+        color: var(--text-dark);
+        transition: border-color 0.2s ease;
+    }
+    .form-minimal .form-control:focus { box-shadow: none; border-color: var(--text-dark); }
+    .form-minimal label { 
+        font-size: 0.85rem; 
+        font-weight: 600; 
+        color: var(--text-muted); 
+        letter-spacing: 0.05em; /* 🛠️ แก้ไขเป็นคำสั่งที่ถูกต้องเรียบร้อย */
+        text-transform: uppercase; /* 🛠️ ย้ายมาคุมที่ CSS หลักเลย */
+    }
+    .social-link-item { border-bottom: 1px solid var(--border-color); padding: 1rem 0; transition: background-color 0.2s ease; }
+    .social-link-item:last-child { border-bottom: none; }
+    .social-link-item:hover { background-color: rgba(0,0,0,0.01); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container px-4 px-lg-5 my-5 py-4">
+    <div class="row g-4">
+        
+        <div class="col-lg-4">
+            <div class="card-minimal p-4 p-md-5 h-100">
+                <div class="d-flex align-items-center gap-2 mb-4">
+                    <span class="bg-dark text-white font-monospace px-2 py-1 rounded-1" style="font-size: 0.75rem;">CONTACT</span>
+                    <span class="text-muted small font-monospace">CHANNELS</span>
+                </div>
+                <h5 class="fw-bold text-dark tracking-tight mb-4">ช่องทางการเชื่อมต่อ</h5>
+                <div class="d-flex flex-column">
+                    <a href="https://www.facebook.com/thegamechice" target="_blank" class="d-flex align-items-center social-link-item text-decoration-none text-dark">
+                        <div class="fs-4 text-dark me-3"><i class="bi bi-facebook"></i></div>
+                        <div><span class="text-muted small font-monospace d-block">FACEBOOK</span><span class="fw-medium text-dark">Phubet Lomabut</span></div>
+                    </a>
+                    <a href="https://www.instagram.com/thegamerchchannel/" target="_blank" class="d-flex align-items-center social-link-item text-decoration-none text-dark">
+                        <div class="fs-4 text-dark me-3"><i class="bi bi-instagram"></i></div>
+                        <div><span class="text-muted small font-monospace d-block">INSTAGRAM</span><span class="fw-medium text-dark">thegamerchchannel</span></div>
+                    </a>
+                    <div class="d-flex align-items-center social-link-item">
+                        <div class="fs-4 text-dark me-3"><i class="bi bi-line"></i></div>
+                        <div><span class="text-muted small font-monospace d-block">LINE ID</span><span class="fw-medium text-dark">thegamerchice</span></div>
+                    </div>
+                    <div class="d-flex align-items-center social-link-item">
+                        <div class="fs-4 text-dark me-3"><i class="bi bi-envelope"></i></div>
+                        <div><span class="text-muted small font-monospace d-block">EMAIL</span><span class="fw-medium text-dark small">lomabut33@gmail.com</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="card-minimal p-4 p-md-5 h-100 form-minimal">
+                <h3 class="fw-bold tracking-tight text-dark mb-2">ส่งข้อความถึงผม</h3>
+                <p class="text-muted small mb-5">กรอกรายละเอียดด้านล่างเพื่อทำการติดต่อร่วมงาน พัฒนาระบบเครือข่าย หรือโปรเจกต์สิ่งประดิษฐ์ฝังตัว (IoT)</p>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="mb-1">ชื่อ-นามสกุล ของคุณ</label>
+                                <input type="text" class="form-control" name="name" placeholder="John Doe" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="mb-1">ข้อมูลสำหรับติดต่อกลับ</label>
+                                <input type="text" class="form-control" name="contact_info" placeholder="Email หรือเบอร์โทรศัพท์" required>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="form-group">
+                                <label class="mb-1">รายละเอียดข้อความ</label>
+                                <textarea class="form-control" name="message" rows="4" placeholder="พิมพ์ข้อความรายละเอียดที่นี่..." required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12 text-end mt-5">
+                            <button type="submit" class="btn btn-dark px-5 py-2 rounded-3 fw-medium font-monospace tracking-wide text-white hover-card">
+                                SEND MESSAGE <i class="bi bi-arrow-up-right ms-2 small"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
