@@ -1,0 +1,76 @@
+{% extends 'basetemplate.html' %}
+{% load static %}
+{% block active_database %}active{% endblock %}
+{% block title %}คลังข้อมูล - Database Records{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* CSS สำหรับตารางสไตล์มินิมอล */
+    .table-minimal th { 
+        border-bottom: 2px solid var(--border-color); 
+        color: var(--text-muted); 
+        font-weight: 600; 
+        font-size: 0.85rem; 
+        letter-spacing: 0.05em; 
+        text-transform: uppercase; 
+        padding-bottom: 1rem;
+    }
+    .table-minimal td { 
+        border-bottom: 1px solid var(--border-color); 
+        vertical-align: middle; 
+        color: var(--text-dark); 
+        padding: 1rem 0.5rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container px-4 px-lg-5 my-5 py-4">
+    <div class="row g-4" data-aos="fade-up">
+        <div class="col-12">
+            <div class="card-minimal p-4 p-md-5">
+                <div class="d-flex align-items-center gap-2 mb-4">
+                    <span class="bg-primary text-white font-monospace px-2 py-1 rounded-1" style="font-size: 0.75rem;">DATABASE</span>
+                    <span class="text-muted small font-monospace">RECORDS LIST</span>
+                </div>
+                <h4 class="fw-bold tracking-tight text-dark mb-4"><i class="bi bi-database me-2"></i>รายชื่อข้อมูลทั้งหมดในระบบ</h4>
+                
+                <div class="table-responsive">
+                    <table class="table table-borderless table-minimal mb-0">
+                        <thead>
+                            <tr>
+                                <th style="width: 80px;">ลำดับ</th> 
+                                <th>ชื่อ-นามสกุล</th>
+                                <th>อายุ</th>
+                                <th>วันเกิด</th>
+                                <th>ที่อยู่</th>
+                                <th>อีเมล</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for person in persons %}
+                            <tr>
+                                <td class="font-monospace text-muted">{{ forloop.counter }}</td>
+                                <td class="fw-medium text-dark">{{ person.name }}</td>
+                                <td>{{ person.age }}</td>
+                                <td>{{ person.date_of_birth }}</td>
+                                <td>{{ person.address }}</td>
+                                <td>{{ person.email }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center text-muted py-5">
+                                    <i class="bi bi-inbox fs-2 d-block mb-2 text-light"></i>
+                                    ยังไม่มีข้อมูลในระบบ
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

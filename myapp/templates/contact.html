@@ -20,8 +20,8 @@
         font-size: 0.85rem; 
         font-weight: 600; 
         color: var(--text-muted); 
-        letter-spacing: 0.05em; /* 🛠️ แก้ไขเป็นคำสั่งที่ถูกต้องเรียบร้อย */
-        text-transform: uppercase; /* 🛠️ ย้ายมาคุมที่ CSS หลักเลย */
+        letter-spacing: 0.05em; 
+        text-transform: uppercase; 
     }
     .social-link-item { border-bottom: 1px solid var(--border-color); padding: 1rem 0; transition: background-color 0.2s ease; }
     .social-link-item:last-child { border-bottom: none; }
@@ -64,7 +64,20 @@
         <div class="col-lg-8">
             <div class="card-minimal p-4 p-md-5 h-100 form-minimal">
                 <h3 class="fw-bold tracking-tight text-dark mb-2">ส่งข้อความถึงผม</h3>
-                <p class="text-muted small mb-5">กรอกรายละเอียดด้านล่างเพื่อทำการติดต่อร่วมงาน พัฒนาระบบเครือข่าย หรือโปรเจกต์สิ่งประดิษฐ์ฝังตัว (IoT)</p>
+                <p class="text-muted small mb-4">กรอกรายละเอียดด้านล่างเพื่อทำการติดต่อร่วมงาน พัฒนาระบบเครือข่าย หรือโปรเจกต์สิ่งประดิษฐ์ฝังตัว (IoT)</p>
+                
+                <!-- 🟢 ส่วนที่เพิ่มเข้ามา: Alert แจ้งเตือนเมื่อส่งเมลสำเร็จ/ล้มเหลว 🟢 -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %} alert-dismissible fade show font-monospace small rounded-3" role="alert">
+                            <i class="bi {% if message.tags == 'error' %}bi-exclamation-triangle-fill{% else %}bi-check-circle-fill{% endif %} me-2"></i>
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <!-- 🟢 สิ้นสุดส่วน Alert 🟢 -->
+
                 <form method="POST" action="">
                     {% csrf_token %}
                     <div class="row g-4">
