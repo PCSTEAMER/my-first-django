@@ -109,9 +109,10 @@
 {% block extra_js %}
 <script>
     // สคริปต์ Tooltip เดิม
+    if (typeof bootstrap !== 'undefined') {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
+    }
     // 🚀 สคริปต์สั่งให้ข้อความพิมพ์เอง (Typing Effect)
     var typed = new Typed('#typed-text', {
         strings: ["นักพัฒนา IoT.", "Web Developer.", "ผู้เชี่ยวชาญ Network."],

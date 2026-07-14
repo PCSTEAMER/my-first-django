@@ -21,7 +21,7 @@
             background-color: var(--bg-main); color: var(--text-dark); font-family: 'Inter', 'Sarabun', sans-serif; letter-spacing: -0.01em; overflow-x: hidden; position: relative; cursor: none;
         }
 
-        /* 🚀 1. Scroll Progress Bar */
+        /* Scroll Progress Bar */
         #scroll-progress {
             position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, #4f46e5, #06b6d4); z-index: 100001; transition: width 0.1s ease-out;
         }
@@ -49,11 +49,9 @@
         .typed-cursor { font-size: 3rem; color: var(--accent-color); animation: blink 1s infinite; }
         @keyframes blink { 50% { opacity: 0; } }
         
-        /* 🚀 2. คลาสสำหรับปุ่มแม่เหล็ก */
         .btn-magnetic { transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: inline-block; }
         a, button, input, textarea { cursor: none !important; }
 
-        /* 🚀 3. ทำให้ Dropdown กางออกเมื่อเอาเมาส์ชี้ (Hover) */
         .dropdown-menu { display: none; margin-top: 0; }
         .dropdown:hover .dropdown-menu { display: block; animation: fadeIn 0.2s ease-in; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
@@ -91,6 +89,8 @@
                     <li class="nav-item"><a class="nav-link cursor-hover {% block active_contact %}{% endblock %}" href="/contact/">ติดต่อฉัน</a></li>
                     <li class="nav-item"><a class="nav-link cursor-hover {% block active_database %}{% endblock %}" href="/database/">คลังข้อมูล</a></li>
                     
+                    <li class="nav-item"><a class="nav-link cursor-hover" href="{% url 'form_view' %}">ฟอร์มบันทึกข้อมูลพนักงาน</a></li>
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle cursor-hover" href="/#projects" id="navbarDropdown" aria-expanded="false">
                             ผลงานของผม
@@ -103,7 +103,7 @@
                             <li><a class="dropdown-item cursor-hover py-2" href="/about/"><i class="bi bi-diagram-3 me-2 text-warning"></i>ทักษะด้าน Programming</a></li>      
                         </ul>
                     </li>
-                    </ul>
+                </ul>
                 <div class="d-flex align-items-center ms-lg-4 ps-lg-4 border-start border-light-subtle">
                     <span class="small text-secondary fw-medium"><i class="bi bi-dot text-success fs-4 align-middle"></i>คุณภูเบศร์</span>
                 </div>
@@ -112,9 +112,28 @@
     </nav>
 
     <main class="flex-grow-1">
-        {% block content %}
-        {% endblock %}
-    </main>
+    <div class="container px-4 px-lg-5 mt-4" id="message-container">
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %} alert-dismissible fade show border-0 shadow-sm rounded-3 d-flex align-items-center" role="alert">
+        <i class="bi {% if message.tags == 'error' %}bi-exclamation-triangle-fill text-danger{% else %}bi-check-circle-fill text-success{% endif %} me-2 fs-5"></i>
+        <div>{{ message }}</div>
+        <button type="button" class="btn-close" onclick="this.closest('.alert').remove()" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    <script>
+        setTimeout(function() {
+            document.querySelectorAll('.alert').forEach(function(alert) {
+                alert.remove();
+            });
+        }, 3000);
+    </script>
+{% endif %}
+    </div>
+
+    {% block content %}
+    {% endblock %}
+</main>
 
     <footer class="py-5 bg-white border-top border-light-subtle mt-5" data-aos="fade-up">
         <div class="container px-4 px-lg-5 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
@@ -129,7 +148,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script> 
@@ -162,7 +181,7 @@
             el.addEventListener('mouseleave', () => { cursorOutline.style.width = '40px'; cursorOutline.style.height = '40px'; cursorOutline.style.backgroundColor = 'transparent'; });
         });
 
-        // Magnetic Buttons (ปุ่มดูดเมาส์)
+        // Magnetic Buttons
         document.querySelectorAll('.btn-magnetic').forEach(btn => {
             btn.addEventListener('mousemove', (e) => {
                 const rect = btn.getBoundingClientRect();

@@ -126,4 +126,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'lomabut33@gmail.com' 
-EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_EMAIL_PASSWORD')
+EMAIL_HOST_PASSWORD = 'fdkcdnfgfrrvbooq' #os.environ.get('DJANGO_EMAIL_PASSWORD')
